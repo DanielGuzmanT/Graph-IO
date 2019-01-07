@@ -13,7 +13,7 @@ __OBS: Este grafo aún no posee nombre.__
 
 ## COLABORACION
 Si deseas colaborar con alguno de estos grafos, o con la página en sí (sobre todo frontend), es bienvenido.
-En la rama `colaborations` se aceptan pull requests.
+En la rama `collaborations` se aceptan pull requests.
 
 ## IMAGENES DEL PROYECTO
 ![web page](images/web_page.jpg)
