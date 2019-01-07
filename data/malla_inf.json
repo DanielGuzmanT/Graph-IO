@@ -1,0 +1,54 @@
+[
+    {
+        "ciclo": 5,
+        "cursos": [
+            {
+                "clave": "1INF06",
+                "curso": "Estructura de Datos y Programación Metódica",
+                "abrev": "EDPM",
+                "ct": 4,
+                "requisitos": [
+                    "INF144",
+                    "[INF263]"
+                ],
+                "creditos": 4.50
+            },
+            {
+                "clave": "EST218",
+                "curso": "Estadística Para Ingeniería",
+                "abrev": "Estadística",
+                "ct": 3,
+                "requisitos": [
+                    "1MAT07"
+                ],
+                "creditos": 3.50
+            },
+            {
+                "clave": "IEE229",
+                "curso": "Electrónica Digital",
+                "abrev": "ED",
+                "ct": 3,
+                "requisitos": [
+                    "1MAT07"
+                ],
+                "creditos": 3.75
+            }
+        ]
+    },
+
+    {
+        "ciclo": 6,
+        "cursos": [
+            {
+                "clave": "IEE240",
+                "curso": "Organización y Arquitectura de Computadoras",
+                "abrev": "OAC",
+                "ct": 4,
+                "requisitos": [
+                    "IEE229"
+                ],
+                "creditos": 5.00
+            }
+        ]
+    }
+]
