@@ -99,8 +99,6 @@ class Graph {
         let long = 10;
 
         // for text
-        context.font = "30px Arial";
-        context.textAlign = "center";
         let y_footer = this.height - 30;
 
         // DRAW SECTION LINES AND CREDITS LABELS
@@ -123,11 +121,13 @@ class Graph {
             // credits labels
             context.strokeStyle = determineColorCredits(section.credits);
             context.fillStyle   = "rgb(0, 0, 0)";
+            context.font = "30px Arial";
+            context.textAlign = "center";
             context.strokeText(section.credits.toString(), (section.x_end + section.x_begin) / 2, y_footer);
             context.fillText(section.credits.toString(), (section.x_end + section.x_begin) / 2, y_footer);
+
+            section.draw(context);
         }
-
-
     }
 
     requirementCompleted(requisito, pos_cicle){
@@ -199,6 +199,13 @@ class Node {
         context.beginPath();
         context.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
         context.fill();
+
+        // for text
+        context.fillStyle = "#000000";
+        context.font = "20px Arial";
+        context.textAlign = "center";
+        context.fillText(this.course.creditos.toString(), this.x, this.y+30);
+        context.fillText(this.course.abrev, this.x, this.y+5);
     }
 }
 
@@ -217,8 +224,8 @@ class Section {
         this.y_end    =  y_end;
         this.y_middle = (y_end + y_begin) / 2;
 
-        this.dist   = 20;
-        this.radius = 30;
+        this.dist   = 50;
+        this.radius = 55;
     }
 
     insertNode(node) {
@@ -240,5 +247,15 @@ class Section {
             node.y = y_center;
             y_center += this.radius * 2 + this.dist;
         }
+    }
+
+    draw(context){
+        // draw nodes
+        for (let i=0; i<this.length; ++i) {
+            this.nodes[i].draw(context);
+        }
+
+        // TODO(4): draw edges
+
     }
 }
