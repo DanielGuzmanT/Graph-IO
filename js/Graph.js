@@ -217,21 +217,28 @@ class Section {
         this.y_end    =  y_end;
         this.y_middle = (y_end + y_begin) / 2;
 
-        this.dist = 20;
+        this.dist   = 20;
+        this.radius = 30;
     }
 
     insertNode(node) {
         // update node attributes
-        node.x = (this.x_end - this.x_begin) / 2;
+        node.x = this.x_middle;
+        node.radius = this.radius; // TODO(3): THINK OF A COMMON RADIUS OR NO
 
         // insert node
         this.nodes.push(node);
         this.credits += node.course.creditos;
         this.length++;
 
+        // horrible math formula to obtain symmetry
+        let y_center = this.y_middle - (this.length - 1) * (this.radius + this.dist / 2);
+
         // update nodes (y) positions
         for (let i=0; i<this.length; ++i) {
-
+            let node = this.nodes[i];
+            node.y = y_center;
+            y_center += this.radius * 2 + this.dist;
         }
     }
 }
