@@ -54,10 +54,8 @@ class Graph {
     }
 
     insert(node, pos) {
-        console.log(node.key, node.course.requisitos);
         // confirm if node can be inserted in that section (number of credits requerired and courses required)
         for (let req=0; req < node.course.requisitos.length; ++req) {
-            console.log("requisito: ", node.course.requisitos[req], " - ", pos);
             let requirement = this.requirementCompleted(node.course.requisitos[req], pos);
             if (requirement.conclusion === state.denied) return false;
         }
@@ -95,7 +93,6 @@ class Graph {
 
     drawSections(context){
         // for lines
-        context.lineWidth   = 4;
         let long = 10;
 
         // for text
@@ -106,6 +103,7 @@ class Graph {
             let section = this.sections[i];
 
             // line
+            context.lineWidth   = 4;
             context.strokeStyle = this.color;
             context.beginPath();
             context.moveTo(section.x_end, section.y_begin);
@@ -130,14 +128,28 @@ class Graph {
         }
     }
 
+    drawTitles(context){
+        context.lineWidth = 1;
+        context.fillStyle   = "rgb(10, 10, 0)";
+        context.strokeStyle = "rgb(10, 0, 0)";
+        context.font = "30px Arial";
+        context.textAlign = "center";
+        for (let i=0; i<this.sections.length; ++i) {
+            let section = this.sections[i];
+            context.strokeText("Ciclo " + (i+1), section.x_middle, 50);
+            context.fillText("Ciclo " + (i+1), section.x_middle, 50);
+        }
+    }
+
     requirementCompleted(requisito, pos_cicle){
         let requirement = {};
         requirement.conclusion = state.accepted;
 
         // number of credits completed
-        if (requisito.search(conditions.credits_f1)!==-1 && requisito.search(conditions.credits_f2)!==-1){
+        console.log(requisito);
+        if (requisito.search(conditions.credits_f1)!==-1 || requisito.search(conditions.credits_f2)!==-1){
             let credits_required = parseFloat(requisito);
-
+            console.log(requisito, credits_required);
             // confirm credits of last cicle
             if(credits_required < this.credits[pos_cicle]) {
                 requirement.conclusion = state.denied;
